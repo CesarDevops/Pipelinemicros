@@ -9,7 +9,7 @@ pipeline {
             steps { 
                 //sh 'gradle task'
                 sh 'gradle init'
-                checkout scm
+              
                 //sh './gradel build'
                 //sh 'gradle wrapper'
                 //sh './gradle build'
@@ -21,14 +21,14 @@ pipeline {
                 //sh 'make check'
                 //sh './gradel check'
                 echo 'test succesfull' 
-                checkout scm
+                
             }
         }
         stage('Deploy') {
             steps {
                 //sh 'make publish'
                 echo 'Deploy succesfull'  
-                checkout scm
+                
             }
         }
     }
