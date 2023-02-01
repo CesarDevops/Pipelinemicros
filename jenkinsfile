@@ -8,6 +8,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 //sh 'gradle task'
+                git branch: 'main', url: 'https://github.com/CesarDevops/Pipelinemicros.git'
                 sh 'gradle init'
               
                 //sh './gradel build'
@@ -24,10 +25,20 @@ pipeline {
                 
             }
         }
-        stage('Deploy') {
+        stage('Buid docker images') {
             steps {
                 //sh 'make publish'
-                echo 'Deploy succesfull'  
+                echo 'Build docker images'  
+                
+            }
+        }
+        
+        stage('Push docker images') {
+            steps {
+                //withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]){
+                   // sh 'docker push 8-jre-alpine:latest'
+                //}
+                echo 'Push docker images'  
                 
             }
         }
