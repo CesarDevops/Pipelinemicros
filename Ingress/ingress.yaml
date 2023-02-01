@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  namespace: default
+spec:
+  tls:
+  - hosts:
+      - micros.nerack
+    secretName: my-micros-certs
+  rules:
+    - host: micros.nerack
+      http: 
+        paths:
+          - path: /rest
+            pathType: Prefix
+            backend:
+              service:
+                name: serviciorest
+                port:
+                  number: 8080
+          - path: /boton
+            pathType: Prefix
+            backend:
+              service:
+                name: servicioboton
+                port:
+                  number: 8080
+          - path: /image
+            pathType: Prefix
+            backend:
+              service:
+                name: servicioimage
+                port:
+                  number: 8080

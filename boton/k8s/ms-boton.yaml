@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boton
+  namespace: ingress-nginx
+spec:
+  selector:
+    matchLabels:
+      app: boton
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: boton
+    spec:
+      containers:
+        - name: boton
+          image: boton:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicioboton
+  namespace: ingress-nginx
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080        # The port inside the cluster
+      targetPort: 8080  # The port exposed by the service
+  type: NodePort        # Type of service
+  selector:
+    app: boton
+
+
