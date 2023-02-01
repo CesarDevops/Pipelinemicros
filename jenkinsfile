@@ -4,25 +4,31 @@ pipeline {
         gradle "Gradle 8.0"
     }
     stages{  
+        
         stage('Build') { 
             steps { 
-                sh 'gradle task'
+                //sh 'gradle task'
                 sh 'gradle init'
-                sh 'gradle wrapper'
-                sh './gradle build'
-                echo 'build succesfull' 
+                checkout scm
+                //sh './gradel build'
+                //sh 'gradle wrapper'
+                //sh './gradle build'
+                //echo 'build succesfull' 
             }
         }
         stage('Test'){
             steps {
                 //sh 'make check'
+                //sh './gradel check'
                 echo 'test succesfull' 
+                checkout scm
             }
         }
         stage('Deploy') {
             steps {
                 //sh 'make publish'
                 echo 'Deploy succesfull'  
+                checkout scm
             }
         }
     }
