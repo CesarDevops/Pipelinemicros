@@ -3,6 +3,10 @@ pipeline {
     tools {
         gradle "Gradle 8.0"
     }
+    environment{
+
+        DOCKERHUB_CREDENTIALS = credentials('cesarnttdata_dockerhub')
+    }
     stages{  
         
         stage('Build') { 
@@ -28,6 +32,7 @@ pipeline {
         stage('Buid docker images') {
             steps {
                 //sh 'make publish'
+                sh 'docker build -t usuariosweb:v1 .'
                 echo 'Build docker images'  
                 
             }
